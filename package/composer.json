@@ -31,12 +31,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Laravel\\Orion\\": "src/"
+            "Laralord\\Orion\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Laravel\\Orion\\Tests\\": "tests/"
+            "Laralord\\Orion\\Tests\\": "tests/"
         }
     },
     "extra": {
@@ -45,7 +45,7 @@
         },
         "laravel": {
             "providers": [
-                "Laravel\\Orion\\OrionServiceProvider"
+                "Laralord\\Orion\\OrionServiceProvider"
             ]
         }
     },

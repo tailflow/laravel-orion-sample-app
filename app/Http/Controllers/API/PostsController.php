@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Resources\PostResource;
 use App\Models\Post;
-use Laravel\Orion\Controllers\Controller;
+use Laralord\Orion\Http\Controllers\Controller;
+use Laralord\Orion\Traits\DisableAuthorization;
 
 class PostsController extends Controller
 {
+    use DisableAuthorization;
+
     /**
-     * @return string
+     * @var string|null $model
      */
-    protected function forModel()
-    {
-        return Post::class;
-    }
+    protected static $model = Post::class;
+
+    /**
+     * @var string $resource
+     */
+    protected static $resource = PostResource::class;
 }

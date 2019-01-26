@@ -17,4 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-\Laravel\Orion\Orion::resource('posts', \App\Http\Controllers\API\PostsController::class);
+Route::group(['as' => 'api.'], function() {
+    \Laralord\Orion\Orion::resource('posts', 'API\PostsController');
+});
+

@@ -1,40 +1,40 @@
 <?php
 
-namespace Laravel\Orion\Controllers;
+namespace Laralord\Orion\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Http\Resources\Json\Resource;
-use Laravel\Orion\Traits\HandlesCRUDOperations;
-use Laravel\Orion\Traits\HandlesRelationOperations;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Laralord\Orion\Traits\HandlesCRUDOperations;
+use Laralord\Orion\Traits\HandlesRelationOperations;
 
-abstract class Controller extends \Illuminate\Routing\Controller
+class Controller extends \Illuminate\Routing\Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,
         HandlesCRUDOperations, HandlesRelationOperations;
 
     /**
+     * @var string|null $model
+     */
+    protected static $model = null;
+
+    /**
+     * @var string $resource
+     */
+    protected static $resource = JsonResource::class;
+
+    /**
      * Controller constructor.
+     * @throws \Exception
      */
     public function __construct()
     {
+        if (!static::$model) throw new \Exception('Model is not specified for '.__CLASS__.' controller.');
         if (!property_exists($this, 'authorizationDisabled'))
-            $this->authorizeResource($this->forModel());
+            $this->authorizeResource(static::$model);
     }
 
-    /**
-     * @return string
-     */
-    abstract protected function forModel();
-
-    /**
-     * @return string
-     */
-    protected function useResource()
-    {
-        return Resource::class;
-    }
 
     /**
      * @return array
@@ -65,6 +65,6 @@ abstract class Controller extends \Illuminate\Routing\Controller
      */
     protected function buildBaseQuery()
     {
-        return with($this->forModel())->query();
+        return with(new static::$model)->query();
     }
 }

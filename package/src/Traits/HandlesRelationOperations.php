@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Laravel\Orion\Traits;
+namespace Laralord\Orion\Traits;
 
 
 trait HandlesRelationOperations

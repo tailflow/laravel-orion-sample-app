@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Orion;
+namespace Laralord\Orion;
 
 class OrionServiceProvider extends \Illuminate\Support\ServiceProvider
 {
