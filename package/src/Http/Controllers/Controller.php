@@ -30,7 +30,7 @@ class Controller extends \Illuminate\Routing\Controller
      */
     public function __construct()
     {
-        if (!static::$model) throw new \Exception('Model is not specified for '.__CLASS__.' controller.');
+        if (!static::$model) throw new \Exception('Model is not specified for ' . __CLASS__ . ' controller.');
         if (!property_exists($this, 'authorizationDisabled'))
             $this->authorizeResource(static::$model);
     }
@@ -61,10 +61,18 @@ class Controller extends \Illuminate\Routing\Controller
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return array
      */
-    protected function buildBaseQuery()
+    protected function includes()
     {
-        return with(new static::$model)->query();
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    protected function alwaysIncludes()
+    {
+        return [];
     }
 }

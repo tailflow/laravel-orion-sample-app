@@ -6,6 +6,7 @@ use Laralord\Orion\Http\Resources\Resource;
 
 class PostResource extends Resource
 {
+
     /**
      * Transform the resource into an array.
      *
@@ -15,7 +16,8 @@ class PostResource extends Resource
     public function toArray($request)
     {
         return $this->toArrayWithMerge($request, [
-            'field' => 'value'
+            'field' => 'value',
+            'user' => $this->whenLoaded('user')
         ]);
     }
 }
