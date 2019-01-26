@@ -39,7 +39,7 @@ class Controller extends \Illuminate\Routing\Controller
     /**
      * @return array
      */
-    protected function sortable()
+    protected function sortableBy()
     {
         return [];
     }
@@ -47,7 +47,7 @@ class Controller extends \Illuminate\Routing\Controller
     /**
      * @return array
      */
-    protected function filterable()
+    protected function filterableBy()
     {
         return [];
     }
