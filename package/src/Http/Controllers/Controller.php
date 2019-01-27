@@ -25,6 +25,11 @@ class Controller extends \Illuminate\Routing\Controller
     protected static $resource = JsonResource::class;
 
     /**
+     * @var string $collectionResource
+     */
+    protected static $collectionResource = null;
+
+    /**
      * Controller constructor.
      * @throws \Exception
      */

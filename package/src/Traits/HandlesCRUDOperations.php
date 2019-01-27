@@ -20,7 +20,7 @@ trait HandlesCRUDOperations
         $afterHookResult = $this->afterIndex($request, $entities);
         if ($this->hookResponds($afterHookResult)) return $afterHookResult;
 
-        return static::$resource::collection($entities);
+        return static::$collectionResource ? new static::$collectionResource($entities) : static::$resource::collection($entities);
     }
 
     public function store(Request $request)

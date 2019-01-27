@@ -31,4 +31,14 @@ class PostsController extends APIController
     {
         $entity->user()->associate(User::query()->find(1));
     }
+
+    protected function sortableBy()
+    {
+        return ['title'];
+    }
+
+    protected function filterableBy()
+    {
+        return ['title'];
+    }
 }
