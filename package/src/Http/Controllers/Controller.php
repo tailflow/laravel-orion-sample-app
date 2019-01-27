@@ -36,10 +36,7 @@ class Controller extends \Illuminate\Routing\Controller
     public function __construct()
     {
         if (!static::$model) throw new \Exception('Model is not specified for ' . __CLASS__ . ' controller.');
-        if (!property_exists($this, 'authorizationDisabled'))
-            $this->authorizeResource(static::$model);
     }
-
 
     /**
      * @return array
@@ -54,6 +51,13 @@ class Controller extends \Illuminate\Routing\Controller
      */
     protected function filterableBy()
     {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    protected function searchableBy() {
         return [];
     }
 
@@ -79,5 +83,28 @@ class Controller extends \Illuminate\Routing\Controller
     protected function alwaysIncludes()
     {
         return [];
+    }
+
+    protected function authorizationRequired()
+    {
+        return property_exists($this, 'authorizationDisabled');
+    }
+
+    /**
+     * Get the map of resource methods to ability names.
+     *
+     * @return array
+     */
+    protected function resourceAbilityMap()
+    {
+        return [
+            'index' => 'list',
+            'show' => 'view',
+            'create' => 'create',
+            'store' => 'create',
+            'edit' => 'update',
+            'update' => 'update',
+            'destroy' => 'delete',
+        ];
     }
 }

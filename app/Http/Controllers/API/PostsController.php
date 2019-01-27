@@ -6,11 +6,9 @@ use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\User;
 use Illuminate\Http\Request;
-use Laralord\Orion\Traits\DisableAuthorization;
 
 class PostsController extends APIController
 {
-    use DisableAuthorization;
 
     /**
      * @var string|null $model
@@ -38,6 +36,11 @@ class PostsController extends APIController
     }
 
     protected function filterableBy()
+    {
+        return ['title'];
+    }
+
+    protected function searchableBy()
     {
         return ['title'];
     }

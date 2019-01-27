@@ -15,6 +15,8 @@ trait HandlesCRUDOperations
         $beforeHookResult = $this->beforeIndex($request);
         if ($this->hookResponds($beforeHookResult)) return $beforeHookResult;
 
+        if ($this->authorizationRequired()) $this->authorize('index', static::$model);
+
         $entities = $this->buildMethodQuery($request)->with($this->relationsFromIncludes($request))->paginate();
 
         $afterHookResult = $this->afterIndex($request, $entities);
@@ -27,6 +29,8 @@ trait HandlesCRUDOperations
     {
         $beforeHookResult = $this->beforeStore($request);
         if ($this->hookResponds($beforeHookResult)) return $beforeHookResult;
+
+        if ($this->authorizationRequired()) $this->authorize('store', static::$model);
 
         /**
          * @var Model $entity
@@ -56,6 +60,7 @@ trait HandlesCRUDOperations
         if ($this->hookResponds($beforeHookResult)) return $beforeHookResult;
 
         $entity = $this->buildMethodQuery($request)->with($this->relationsFromIncludes($request))->findOrFail($id);
+        if ($this->authorizationRequired()) $this->authorize('show', $entity);
 
         $afterHookResult = $this->afterShow($request, $entity);
         if ($this->hookResponds($afterHookResult)) return $afterHookResult;
@@ -69,6 +74,8 @@ trait HandlesCRUDOperations
         if ($this->hookResponds($beforeHookResult)) return $beforeHookResult;
 
         $entity = $this->buildMethodQuery($request)->with($this->relationsFromIncludes($request))->findOrFail($id);
+        if ($this->authorizationRequired()) $this->authorize('update', $entity);
+
         $entity->fill($request->only($entity->getFillable()));
 
         $beforeSaveHookResult = $this->beforeSave($request, $entity);
@@ -93,6 +100,8 @@ trait HandlesCRUDOperations
         if ($this->hookResponds($beforeHookResult)) return $beforeHookResult;
 
         $entity = $this->buildMethodQuery($request)->with($this->relationsFromIncludes($request))->findOrFail($id);
+        if ($this->authorizationRequired()) $this->authorize('destroy', $entity);
+
         $entity->delete();
 
         $afterHookResult = $this->afterDestroy($request, $entity);
@@ -253,9 +262,10 @@ trait HandlesCRUDOperations
          */
         $query = static::$model::query();
 
-        // only for index method (well, and show method also, but it does not make sense to sort or filter data in the show method via query parameters...)
+        // only for index method (well, and show method also, but it does not make sense to sort, filter or search data in the show method via query parameters...)
         if ($request->isMethod('GET')) {
             $this->applyFiltersToQuery($request, $query);
+            $this->applySearchingToQuery($request, $query);
             $this->applySortingToQuery($request, $query);
         }
 
@@ -320,6 +330,35 @@ trait HandlesCRUDOperations
                 $query->where($filterable, $filterValue);
             }
         }
+    }
+
+    protected function applySearchingToQuery(Request $request, Builder $query)
+    {
+        if (!$requestedSearchStr = $request->get('q')) return;
+
+        $searchables = $this->searchableBy();
+        if (!count($searchables)) return;
+
+        $query->where(function($whereQuery) use ($searchables, $requestedSearchStr) {
+            /**
+             * @var Builder $whereQuery
+             */
+            foreach ($searchables as $searchable) {
+                if (strpos($searchable, '.') !== false) {
+                    $relation = implode('.', array_slice(explode('.', $searchable), -1));
+                    $relationField = array_last(explode('.', $searchable));
+                    $whereQuery->orWhereHas($relation, function ($relationQuery) use ($relationField, $requestedSearchStr) {
+                        /**
+                         * @var \Illuminate\Database\Query\Builder $relationQuery
+                         */
+                        return $relationQuery->where($relationField, 'like', '%'.$requestedSearchStr.'%');
+                    });
+                } else {
+                    $whereQuery->orWhere($searchable, 'like', '%'.$requestedSearchStr.'%');
+                }
+            }
+        });
+
     }
 
     /**
