@@ -44,4 +44,20 @@ class PostsController extends APIController
     {
         return ['title'];
     }
+
+    /**
+     * @return array
+     */
+    protected function includes()
+    {
+        return ['user'];
+    }
+
+    /**
+     * @return array
+     */
+    protected function relations()
+    {
+        return ['meta'];
+    }
 }

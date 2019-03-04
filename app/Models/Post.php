@@ -37,4 +37,12 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function meta()
+    {
+        return $this->hasOne(PostMeta::class);
+    }
 }

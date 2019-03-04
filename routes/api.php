@@ -19,5 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['as' => 'api.'], function() {
     \Laralord\Orion\Orion::resource('posts', 'API\PostsController');
+    \Laralord\Orion\Orion::resourceRelation('posts', 'meta', 'API\PostPostMetaController');
 });
 
