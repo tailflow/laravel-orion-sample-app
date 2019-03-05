@@ -46,6 +46,8 @@ trait BuildsQuery
     }
 
     /**
+     * Build the list of relations allowed to be included together with a resource based on the "include" query parameter.
+     *
      * @param Request $request
      * @return array
      */
@@ -63,6 +65,12 @@ trait BuildsQuery
         return array_unique(array_merge($validatedIncludes, $this->alwaysIncludes()));
     }
 
+    /**
+     * Apply sorting to the given query builder based on the "sort" query parameter.
+     *
+     * @param Request $request
+     * @param Builder $query
+     */
     protected function applySortingToQuery(Request $request, Builder $query)
     {
         if (!$requestedSortableDescriptorsStr = $request->get('sort')) return;
@@ -85,6 +93,12 @@ trait BuildsQuery
         }
     }
 
+    /**
+     * Apply filters to the given query builder based on the query parameters.
+     *
+     * @param Request $request
+     * @param Builder $query
+     */
     protected function applyFiltersToQuery(Request $request, Builder $query)
     {
         $requestedFilterables = $request->query();
@@ -110,6 +124,12 @@ trait BuildsQuery
         }
     }
 
+    /**
+     * Apply search query to the given query builder based on the "q" query parameter.
+     *
+     * @param Request $request
+     * @param Builder $query
+     */
     protected function applySearchingToQuery(Request $request, Builder $query)
     {
         if (!$requestedSearchStr = $request->get('q')) return;
@@ -139,6 +159,8 @@ trait BuildsQuery
     }
 
     /**
+     * Validate the param constraint against allowed param constraints.
+     *
      * @param string $paramConstraint
      * @param array $allowedParamConstraints
      * @return bool

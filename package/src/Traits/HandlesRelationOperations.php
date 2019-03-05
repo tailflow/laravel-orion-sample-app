@@ -303,11 +303,6 @@ trait HandlesRelationOperations
         return null;
     }
 
-    protected function getRelationModelClass()
-    {
-        return get_class(with(new static::$model)->{static::$relation}()->getModel());
-    }
-
     /**
      * Get Eloquent query builder for the relation model and apply filters, searching and sorting.
      *
@@ -346,5 +341,15 @@ trait HandlesRelationOperations
 
         if (method_exists($this, $customQueryMethod)) return $this->{$customQueryMethod}($request);
         return $this->buildRelationQuery($request, $resourceEntity);
+    }
+
+    /**
+     * Get relation model class from the relation.
+     *
+     * @return string
+     */
+    protected function getRelationModelClass()
+    {
+        return get_class(with(new static::$model)->{static::$relation}()->getModel());
     }
 }

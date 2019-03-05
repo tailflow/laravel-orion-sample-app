@@ -30,14 +30,17 @@ class BaseController extends \Illuminate\Routing\Controller
 
     /**
      * Controller constructor.
+     *
      * @throws \Exception
      */
     public function __construct()
     {
-        if (!static::$model) throw new \Exception('Model is not specified for ' . __CLASS__ . ' controller.');
+        if (!static::$model) throw new \Exception('Model is not specified for ' . __CLASS__);
     }
 
     /**
+     * The attributes that are used for sorting.
+     *
      * @return array
      */
     protected function sortableBy()
@@ -46,6 +49,8 @@ class BaseController extends \Illuminate\Routing\Controller
     }
 
     /**
+     * The attributes that are used for filtering.
+     *
      * @return array
      */
     protected function filterableBy()
@@ -54,6 +59,8 @@ class BaseController extends \Illuminate\Routing\Controller
     }
 
     /**
+     * The attributes that are used for searching.
+     *
      * @return array
      */
     protected function searchableBy()
@@ -62,6 +69,8 @@ class BaseController extends \Illuminate\Routing\Controller
     }
 
     /**
+     * The relations that are allowed to be included together with a resource.
+     *
      * @return array
      */
     protected function includes()
@@ -70,6 +79,8 @@ class BaseController extends \Illuminate\Routing\Controller
     }
 
     /**
+     * The relations that are always included together with a resource.
+     *
      * @return array
      */
     protected function alwaysIncludes()
@@ -77,11 +88,22 @@ class BaseController extends \Illuminate\Routing\Controller
         return [];
     }
 
+    /**
+     * Determine whether authorization is required or not to perform the action.
+     *
+     * @return bool
+     */
     protected function authorizationRequired()
     {
         return property_exists($this, 'authorizationDisabled');
     }
 
+    /**
+     * Determine whether hook returns a response or not.
+     *
+     * @param mixed $hookResult
+     * @return bool
+     */
     protected function hookResponds($hookResult)
     {
         return $hookResult instanceof Response;
