@@ -2,14 +2,22 @@
 
 namespace Laralord\Orion\Traits;
 
-use App\Models\Post;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 trait HandlesRelationOperations
 {
+    /**
+     * Fetch the list of relation resources.
+     *
+     * @param Request $request
+     * @param int $resourceID
+     * @return ResourceCollection
+     */
     public function index(Request $request, $resourceID)
     {
         $beforeHookResult = $this->beforeIndex($request);
@@ -26,6 +34,13 @@ trait HandlesRelationOperations
         return static::$collectionResource ? new static::$collectionResource($entities) : static::$resource::collection($entities);
     }
 
+    /**
+     * Create new relation resource.
+     *
+     * @param Request $request
+     * @param int $resourceID
+     * @return Resource
+     */
     public function store(Request $request, $resourceID)
     {
         $beforeHookResult = $this->beforeStore($request);
@@ -59,6 +74,14 @@ trait HandlesRelationOperations
         return new static::$resource($entity);
     }
 
+    /**
+     * Fetch a relation resource.
+     *
+     * @param Request $request
+     * @param int $resourceID
+     * @param int $relationID
+     * @return Resource
+     */
     public function show(Request $request, $resourceID, $relationID)
     {
         $beforeHookResult = $this->beforeShow($request, $relationID);
@@ -75,6 +98,14 @@ trait HandlesRelationOperations
         return new static::$resource($entity);
     }
 
+    /**
+     * Update a relation resource.
+     *
+     * @param Request $request
+     * @param int $resourceID
+     * @param int $relationID
+     * @return Resource
+     */
     public function update(Request $request, $resourceID, $relationID)
     {
         $beforeHookResult = $this->beforeUpdate($request, $relationID);
@@ -103,6 +134,15 @@ trait HandlesRelationOperations
         return new static::$resource($entity);
     }
 
+    /**
+     * Delete a relation resource.
+     *
+     * @param Request $request
+     * @param int $resourceID
+     * @param int $relationID
+     * @return Resource
+     * @throws \Exception
+     */
     public function destroy(Request $request, $resourceID, $relationID)
     {
         $beforeHookResult = $this->beforeDestroy($request, $relationID);
@@ -122,6 +162,8 @@ trait HandlesRelationOperations
     }
 
     /**
+     * The hooks is executed before fetching the list of relation resources.
+     *
      * @param Request $request
      * @return mixed
      */
@@ -131,6 +173,8 @@ trait HandlesRelationOperations
     }
 
     /**
+     * The hooks is executed after fetching the list of relation resources.
+     *
      * @param Request $request
      * @param LengthAwarePaginator $entities
      * @return mixed
@@ -141,6 +185,8 @@ trait HandlesRelationOperations
     }
 
     /**
+     * The hook is executed before creating new relation resource.
+     *
      * @param Request $request
      * @return mixed
      */
@@ -150,6 +196,8 @@ trait HandlesRelationOperations
     }
 
     /**
+     * The hook is executed after creating new relation resource.
+     *
      * @param Request $request
      * @param Model $entity
      * @return mixed
@@ -160,6 +208,8 @@ trait HandlesRelationOperations
     }
 
     /**
+     * The hook is executed before fetching relation resource.
+     *
      * @param Request $request
      * @param int $id
      * @return mixed
@@ -170,6 +220,8 @@ trait HandlesRelationOperations
     }
 
     /**
+     * The hook is executed after fetching a relation resource
+     *
      * @param Request $request
      * @param Model $entity
      * @return mixed
@@ -180,6 +232,8 @@ trait HandlesRelationOperations
     }
 
     /**
+     * The hook is executed before updating a relation resource.
+     *
      * @param Request $request
      * @param int $id
      * @return mixed
@@ -190,6 +244,8 @@ trait HandlesRelationOperations
     }
 
     /**
+     * The hook is executed after updating a relation resource.
+     *
      * @param Request $request
      * @param Model $entity
      * @return mixed
@@ -200,6 +256,8 @@ trait HandlesRelationOperations
     }
 
     /**
+     * The hook is executed before deleting a relation resource.
+     *
      * @param Request $request
      * @param int $id
      * @return mixed
@@ -210,6 +268,8 @@ trait HandlesRelationOperations
     }
 
     /**
+     * The hook is executed after deleting a relation resource.
+     *
      * @param Request $request
      * @param Model $entity
      * @return mixed
@@ -220,6 +280,8 @@ trait HandlesRelationOperations
     }
 
     /**
+     * The hook is executed before creating or updating a relation resource.
+     *
      * @param Request $request
      * @param Model $entity
      * @return mixed
@@ -230,6 +292,8 @@ trait HandlesRelationOperations
     }
 
     /**
+     * The hook is executed after creating or updating a relation resource.
+     *
      * @param Request $request
      * @param Model $entity
      * @return mixed
@@ -245,6 +309,8 @@ trait HandlesRelationOperations
     }
 
     /**
+     * Get Eloquent query builder for the relation model and apply filters, searching and sorting.
+     *
      * @param Request $request
      * @param Model $resourceEntity
      * @return \Illuminate\Database\Eloquent\Builder
@@ -267,6 +333,8 @@ trait HandlesRelationOperations
     }
 
     /**
+     * Get custom query builder, if any, otherwise use default; apply filters, searching and sorting.
+     *
      * @param Request $request
      * @param Model $resourceEntity
      * @return Builder

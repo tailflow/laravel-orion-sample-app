@@ -3,15 +3,21 @@
 namespace Laralord\Orion\Traits;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 trait HandlesCRUDOperations
 {
     use BuildsQuery;
 
+    /**
+     * Fetch the list of resources.
+     *
+     * @param Request $request
+     * @return ResourceCollection
+     */
     public function index(Request $request)
     {
         $beforeHookResult = $this->beforeIndex($request);
@@ -27,6 +33,12 @@ trait HandlesCRUDOperations
         return static::$collectionResource ? new static::$collectionResource($entities) : static::$resource::collection($entities);
     }
 
+    /**
+     * Create new resource.
+     *
+     * @param Request $request
+     * @return Resource
+     */
     public function store(Request $request)
     {
         $beforeHookResult = $this->beforeStore($request);
@@ -56,6 +68,13 @@ trait HandlesCRUDOperations
         return new static::$resource($entity);
     }
 
+    /**
+     * Fetch resource.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return Resource
+     */
     public function show(Request $request, $id)
     {
         $beforeHookResult = $this->beforeShow($request, $id);
@@ -70,6 +89,13 @@ trait HandlesCRUDOperations
         return new static::$resource($entity);
     }
 
+    /**
+     * Update a resource.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return Resource
+     */
     public function update(Request $request, $id)
     {
         $beforeHookResult = $this->beforeUpdate($request, $id);
@@ -96,6 +122,14 @@ trait HandlesCRUDOperations
         return new static::$resource($entity);
     }
 
+    /**
+     * Delete a resource.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return Resource
+     * @throws \Exception
+     */
     public function destroy(Request $request, $id)
     {
         $beforeHookResult = $this->beforeDestroy($request, $id);
@@ -113,6 +147,8 @@ trait HandlesCRUDOperations
     }
 
     /**
+     * The hooks is executed before fetching the list of resources.
+     *
      * @param Request $request
      * @return mixed
      */
@@ -122,6 +158,8 @@ trait HandlesCRUDOperations
     }
 
     /**
+     * The hooks is executed after fetching the list of resources.
+     *
      * @param Request $request
      * @param LengthAwarePaginator $entities
      * @return mixed
@@ -132,6 +170,8 @@ trait HandlesCRUDOperations
     }
 
     /**
+     * The hook is executed before creating new resource.
+     *
      * @param Request $request
      * @return mixed
      */
@@ -141,6 +181,8 @@ trait HandlesCRUDOperations
     }
 
     /**
+     * The hook is executed after creating new resource.
+     *
      * @param Request $request
      * @param Model $entity
      * @return mixed
@@ -151,6 +193,8 @@ trait HandlesCRUDOperations
     }
 
     /**
+     * The hook is executed before fetching a resource.
+     *
      * @param Request $request
      * @param int $id
      * @return mixed
@@ -161,6 +205,8 @@ trait HandlesCRUDOperations
     }
 
     /**
+     * The hook is executed after fetching a resource
+     *
      * @param Request $request
      * @param Model $entity
      * @return mixed
@@ -171,6 +217,8 @@ trait HandlesCRUDOperations
     }
 
     /**
+     * The hook is executed before updating a resource.
+     *
      * @param Request $request
      * @param int $id
      * @return mixed
@@ -181,6 +229,8 @@ trait HandlesCRUDOperations
     }
 
     /**
+     * The hook is executed after updating a resource.
+     *
      * @param Request $request
      * @param Model $entity
      * @return mixed
@@ -191,6 +241,8 @@ trait HandlesCRUDOperations
     }
 
     /**
+     * The hook is executed before deleting a resource.
+     *
      * @param Request $request
      * @param int $id
      * @return mixed
@@ -201,6 +253,8 @@ trait HandlesCRUDOperations
     }
 
     /**
+     * The hook is executed after deleting a resource.
+     *
      * @param Request $request
      * @param Model $entity
      * @return mixed
@@ -211,6 +265,8 @@ trait HandlesCRUDOperations
     }
 
     /**
+     * The hook is executed before creating or updating a resource.
+     *
      * @param Request $request
      * @param Model $entity
      * @return mixed
@@ -221,6 +277,8 @@ trait HandlesCRUDOperations
     }
 
     /**
+     * The hook is executed after creating or updating a resource.
+     *
      * @param Request $request
      * @param Model $entity
      * @return mixed

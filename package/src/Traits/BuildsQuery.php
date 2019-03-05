@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 trait BuildsQuery
 {
     /**
+     * Get Eloquent query builder for the model and apply filters, searching and sorting.
+     *
      * @param Request $request
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -29,6 +31,8 @@ trait BuildsQuery
     }
 
     /**
+     * Get custom query builder, if any, otherwise use default; apply filters, searching and sorting.
+     *
      * @param Request $request
      * @return Builder
      */
