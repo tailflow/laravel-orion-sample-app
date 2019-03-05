@@ -2,6 +2,7 @@
 
 namespace Laralord\Orion\Traits;
 
+use App\Models\Post;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -121,7 +122,7 @@ trait HandlesRelationOperations
         $beforeSaveHookResult = $this->beforeSave($request, $entity);
         if ($this->hookResponds($beforeSaveHookResult)) return $beforeSaveHookResult;
 
-        $entity->save();
+        $resourceEntity->{static::$relation}()->save($entity);
 
         $entity->load($this->relationsFromIncludes($request));
 
@@ -315,7 +316,7 @@ trait HandlesRelationOperations
         /**
          * @var Builder $query
          */
-        $query = $resourceEntity->{static::$relation}()->getQuery();
+        $query = $resourceEntity->{static::$relation}();
 
         // only for index method (well, and show method also, but it does not make sense to sort, filter or search data in the show method via query parameters...)
         if ($request->isMethod('GET')) {

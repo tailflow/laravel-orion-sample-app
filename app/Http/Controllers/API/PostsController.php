@@ -50,14 +50,6 @@ class PostsController extends APIController
      */
     protected function includes()
     {
-        return ['user'];
-    }
-
-    /**
-     * @return array
-     */
-    protected function relations()
-    {
-        return ['meta'];
+        return ['user', 'image', 'comments', 'tags'];
     }
 }

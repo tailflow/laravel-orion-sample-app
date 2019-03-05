@@ -3,6 +3,7 @@
 namespace Laralord\Orion\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 
 trait BuildsQuery
@@ -69,9 +70,9 @@ trait BuildsQuery
      * Apply sorting to the given query builder based on the "sort" query parameter.
      *
      * @param Request $request
-     * @param Builder $query
+     * @param Builder|Relation $query
      */
-    protected function applySortingToQuery(Request $request, Builder $query)
+    protected function applySortingToQuery(Request $request, $query)
     {
         if (!$requestedSortableDescriptorsStr = $request->get('sort')) return;
 
@@ -97,9 +98,9 @@ trait BuildsQuery
      * Apply filters to the given query builder based on the query parameters.
      *
      * @param Request $request
-     * @param Builder $query
+     * @param Builder|Relation $query
      */
-    protected function applyFiltersToQuery(Request $request, Builder $query)
+    protected function applyFiltersToQuery(Request $request, $query)
     {
         $requestedFilterables = $request->query();
         $allowedFilterables = $this->filterableBy();
@@ -128,9 +129,9 @@ trait BuildsQuery
      * Apply search query to the given query builder based on the "q" query parameter.
      *
      * @param Request $request
-     * @param Builder $query
+     * @param Builder|Relation $query
      */
-    protected function applySearchingToQuery(Request $request, Builder $query)
+    protected function applySearchingToQuery(Request $request, $query)
     {
         if (!$requestedSearchStr = $request->get('q')) return;
 

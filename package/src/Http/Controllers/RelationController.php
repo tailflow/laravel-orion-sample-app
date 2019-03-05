@@ -12,4 +12,11 @@ class RelationController extends BaseController
      * @var string|null $relation
      */
     protected static $relation = null;
+
+    /**
+     * The list of pivot fields that can be set upon relation resource creation or update.
+     *
+     * @var bool
+     */
+    protected $pivotFillable = [];
 }
