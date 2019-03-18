@@ -16,4 +16,11 @@ class UserRolesController extends RelationController
      * @var string $relation
      */
     protected static $relation = 'roles';
+
+    /**
+     * The list of pivot fields that can be set upon relation resource creation or update.
+     *
+     * @var bool
+     */
+    protected $pivotFillable = ['meta'];
 }

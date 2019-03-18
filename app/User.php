@@ -39,7 +39,7 @@ class User extends Authenticatable
     }
 
     /**
-     * The roles that belong to the user.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles()
     {
