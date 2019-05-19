@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Laralord\Orion\Orion;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +20,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['as' => 'api.'], function() {
-    \Laralord\Orion\Orion::resource('posts', 'API\PostsController');
-    \Laralord\Orion\Orion::resourceRelation('posts', 'meta', 'API\PostPostMetaController');
-    \Laralord\Orion\Orion::resourceRelation('posts', 'image', 'API\PostImageController');
-    \Laralord\Orion\Orion::resourceRelation('posts', 'comments', 'API\PostCommentsController');
-    \Laralord\Orion\Orion::resourceRelation('posts', 'tags', 'API\PostTagsController');
+    Orion::resource('posts', 'API\PostsController');
+    Orion::hasOneResource('posts', 'meta', 'API\PostPostMetaController');
+    Orion::morphOneResource('posts', 'image', 'API\PostImageController');
+    Orion::morphManyResource('posts', 'comments', 'API\PostCommentsController');
+    Orion::morphToManyResource('posts', 'tags', 'API\PostTagsController');
 
-    \Laralord\Orion\Orion::resource('roles', 'API\RolesController');
+    Orion::resource('roles', 'API\RolesController');
 
-    \Laralord\Orion\Orion::resourceRelation('users', 'roles', 'API\UserRolesController');
+    Orion::belongsToManyResource('users', 'roles', 'API\UserRolesController');
+    Orion::hasManyResource('users', 'posts', 'API\UserPostsController');
 });
 
