@@ -21,6 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['as' => 'api.'], function() {
     Orion::resource('posts', 'API\PostsController');
+    Orion::belongsToResource('posts', 'user', 'API\PostUserController');
     Orion::hasOneResource('posts', 'meta', 'API\PostPostMetaController');
     Orion::morphOneResource('posts', 'image', 'API\PostImageController');
     Orion::morphManyResource('posts', 'comments', 'API\PostCommentsController');
