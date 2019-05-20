@@ -27,6 +27,8 @@ Route::group(['as' => 'api.'], function() {
     Orion::morphManyResource('posts', 'comments', 'API\PostCommentsController');
     Orion::morphToManyResource('posts', 'tags', 'API\PostTagsController');
 
+    Orion::belongsToResource('post_metas', 'post', 'API\PostMetaPostController');
+
     Orion::resource('roles', 'API\RolesController');
 
     Orion::belongsToManyResource('users', 'roles', 'API\UserRolesController');
