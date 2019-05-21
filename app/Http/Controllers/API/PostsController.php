@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\User;
 use Illuminate\Http\Request;
@@ -14,11 +13,6 @@ class PostsController extends APIController
      * @var string|null $model
      */
     protected static $model = Post::class;
-
-    /**
-     * @var string $resource
-     */
-    protected static $resource = PostResource::class;
 
     /**
      * @param Request $request
