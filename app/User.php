@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Post;
 use App\Models\Role;
+use App\Models\Team;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -29,6 +30,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

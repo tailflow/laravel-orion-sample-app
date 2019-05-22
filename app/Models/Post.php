@@ -43,7 +43,6 @@ class Post extends Model
      */
     public function meta()
     {
-//        $this->user()->dissociate()
         return $this->hasOne(PostMeta::class);
     }
 
