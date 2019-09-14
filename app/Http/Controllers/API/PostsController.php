@@ -4,10 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Post;
 use App\User;
-use Illuminate\Http\Request;
+use Laralord\Orion\Http\Requests\Request;
+use Laralord\Orion\Traits\DisableAuthorization;
 
 class PostsController extends APIController
 {
+    use DisableAuthorization;
 
     /**
      * @var string|null $model
