@@ -3,10 +3,9 @@
 namespace App\Policies;
 
 use App\User;
-use App\Models\Post;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class PostPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -26,10 +25,10 @@ class PostPolicy
      * Determine whether the user can view the post.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\User  $relatedUser
      * @return mixed
      */
-    public function view(User $user, Post $post)
+    public function view(User $user, User $relatedUser)
     {
         return true;
     }
@@ -49,22 +48,22 @@ class PostPolicy
      * Determine whether the user can update the post.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\User  $post
      * @return mixed
      */
-    public function update(User $user, Post $post)
+    public function update(User $user, User $relatedUser)
     {
-        return $user->id === $post->user_id;
+        return true;
     }
 
     /**
      * Determine whether the user can delete the post.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\User  $relatedUser
      * @return mixed
      */
-    public function delete(User $user, Post $post)
+    public function delete(User $user, User $relatedUser)
     {
         return true;
     }
@@ -73,10 +72,10 @@ class PostPolicy
      * Determine whether the user can restore the post.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\User  $relatedUser
      * @return mixed
      */
-    public function restore(User $user, Post $post)
+    public function restore(User $user, User $relatedUser)
     {
         return true;
     }
@@ -85,10 +84,10 @@ class PostPolicy
      * Determine whether the user can permanently delete the post.
      *
      * @param  \App\User  $user
-     * @param  \App\Models\Post  $post
+     * @param  \App\User  $relatedUser
      * @return mixed
      */
-    public function forceDelete(User $user, Post $post)
+    public function forceDelete(User $user, User $relatedUser)
     {
         return true;
     }

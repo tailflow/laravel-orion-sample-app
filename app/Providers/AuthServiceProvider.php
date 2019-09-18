@@ -3,10 +3,13 @@
 namespace App\Providers;
 
 use App\Models\Post;
+use App\Models\PostMeta;
 use App\Models\Tag;
+use App\Policies\PostMetaPolicy;
 use App\Policies\PostPolicy;
 use App\Policies\TagPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -17,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Post::class => PostPolicy::class,
+        PostMeta::class => PostMetaPolicy::class,
         Tag::class => TagPolicy::class
     ];
 
@@ -28,5 +32,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        Passport::routes();
     }
 }
