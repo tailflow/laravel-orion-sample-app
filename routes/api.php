@@ -20,20 +20,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['as' => 'api.'], function() {
+
+    //TODO: restore and forceDelete endpoints support
     Orion::resource('posts', 'API\PostsController');
     Orion::belongsToResource('posts', 'user', 'API\PostUserController');
     Orion::hasOneResource('posts', 'meta', 'API\PostPostMetaController');
     Orion::morphOneResource('posts', 'image', 'API\PostImageController');
     Orion::morphManyResource('posts', 'comments', 'API\PostCommentsController');
     Orion::morphToManyResource('posts', 'tags', 'API\PostTagsController');
+    Orion::morphToManyResource('tags', 'posts', 'API\TagPostsController');
 
     Orion::belongsToResource('post_metas', 'post', 'API\PostMetaPostController');
 
     Orion::resource('roles', 'API\RolesController');
-
     Orion::belongsToManyResource('users', 'roles', 'API\UserRolesController');
     Orion::hasManyResource('users', 'posts', 'API\UserPostsController');
-
     Orion::hasManyThroughResource('teams', 'posts', 'API\TeamPostsController');
 });
 
