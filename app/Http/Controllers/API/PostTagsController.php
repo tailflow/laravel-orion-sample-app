@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Post;
 use Laralord\Orion\Http\Controllers\RelationController;
-use Laralord\Orion\Traits\DisableAuthorization;
+use Laralord\Orion\Concerns\DisableAuthorization;
 
 class PostTagsController extends RelationController
 {
