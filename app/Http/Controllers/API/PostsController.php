@@ -9,7 +9,6 @@ use Laralord\Orion\Concerns\DisableAuthorization;
 
 class PostsController extends APIController
 {
-    use DisableAuthorization;
     /**
      * @var string|null $model
      */

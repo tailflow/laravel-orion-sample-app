@@ -34,7 +34,7 @@ Route::group(['as' => 'api.'], function() {
 
     Orion::resource('roles', 'API\RolesController');
     Orion::belongsToManyResource('users', 'roles', 'API\UserRolesController');
-    Orion::hasManyResource('users', 'posts', 'API\UserPostsController');
+    Orion::hasManyResource('users', 'posts', 'API\UserPostsController', ['softDeletes' => true]);
     Orion::hasManyThroughResource('teams', 'posts', 'API\TeamPostsController');
 });
 
