@@ -20,8 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['as' => 'api.'], function() {
-
-    //TODO: restore and forceDelete endpoints support
     Orion::resource('posts', 'API\PostsController', ['softDeletes' => true]);
     Orion::belongsToResource('posts', 'user', 'API\PostUserController');
     Orion::hasOneResource('posts', 'meta', 'API\PostPostMetaController');
