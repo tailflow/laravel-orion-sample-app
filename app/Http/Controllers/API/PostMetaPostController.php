@@ -4,7 +4,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\PostMeta;
-use Laralord\Orion\Http\Controllers\RelationController;
+use Orion\Http\Controllers\RelationController;
 
 class PostMetaPostController extends RelationController
 {

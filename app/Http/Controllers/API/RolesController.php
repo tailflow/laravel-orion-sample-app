@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Role;
-use Laralord\Orion\Http\Controllers\Controller;
+use Orion\Http\Controllers\Controller;
 
 class RolesController extends Controller
 {

@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 
-use Laralord\Orion\Http\Resources\ResourceCollection;
+use Orion\Http\Resources\ResourceCollection;
 
 class PostsCollectionResource extends ResourceCollection
 {

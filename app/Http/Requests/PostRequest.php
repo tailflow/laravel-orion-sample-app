@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Laralord\Orion\Http\Requests\Request;
+use Orion\Http\Requests\Request;
 
 class PostRequest extends Request
 {

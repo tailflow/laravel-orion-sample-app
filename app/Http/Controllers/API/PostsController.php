@@ -4,8 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Post;
 use App\User;
-use Laralord\Orion\Http\Requests\Request;
-use Laralord\Orion\Concerns\DisableAuthorization;
+use Orion\Http\Requests\Request;
 
 class PostsController extends APIController
 {

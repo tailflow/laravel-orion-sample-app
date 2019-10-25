@@ -3,7 +3,7 @@
 
 namespace App\Http\Controllers\API;
 
-use Laralord\Orion\Http\Controllers\Controller;
+use Orion\Http\Controllers\Controller;
 
 class APIController extends Controller
 {

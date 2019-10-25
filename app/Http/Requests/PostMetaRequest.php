@@ -4,7 +4,7 @@
 namespace App\Http\Requests;
 
 
-use Laralord\Orion\Http\Requests\Request;
+use Orion\Http\Requests\Request;
 
 class PostMetaRequest extends Request
 {

@@ -4,7 +4,7 @@
 namespace App\Http\Controllers\API;
 
 use App\User;
-use Laralord\Orion\Http\Controllers\RelationController;
+use Orion\Http\Controllers\RelationController;
 
 class UserPostsController extends RelationController
 {
