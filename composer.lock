@@ -771,7 +771,7 @@
             "dist": {
                 "type": "path",
                 "url": "./package",
-                "reference": "f1ebcc5db91975dfdc0dd45c8ad8823d984cef4e"
+                "reference": "29a31ac761898ab668b32485473f9eaaed2aaae6"
             },
             "require": {
                 "ext-json": "*",
@@ -785,7 +785,7 @@
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
-                "phpunit/phpunit": ">=6.0"
+                "phpunit/phpunit": "^6.0|^7.0|^8.0"
             },
             "type": "library",
             "extra": {
