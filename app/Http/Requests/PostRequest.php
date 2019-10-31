@@ -9,7 +9,14 @@ class PostRequest extends Request
     public function commonRules()
     {
         return [
-          'title' => 'required'
+            'title' => 'required'
+        ];
+    }
+
+    public function storeRules()
+    {
+        return [
+            'status' => 'required|in:draft,review'
         ];
     }
 }
