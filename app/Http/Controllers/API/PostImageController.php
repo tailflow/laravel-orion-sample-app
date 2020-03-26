@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers\API;
 
-
 use App\Models\Post;
+use Orion\Concerns\DisableAuthorization;
 use Orion\Http\Controllers\RelationController;
 
 class PostImageController extends RelationController
 {
+    use DisableAuthorization;
+
     /**
      * @var string|null $model
      */
-    protected static $model = Post::class;
+    protected $model = Post::class;
 
     /**
      * @var string $relation
      */
-    protected static $relation = 'image';
+    protected $relation = 'image';
 }

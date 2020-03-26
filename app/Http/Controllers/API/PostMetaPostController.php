@@ -11,10 +11,10 @@ class PostMetaPostController extends RelationController
     /**
      * @var string|null $model
      */
-    protected static $model = PostMeta::class;
+    protected $model = PostMeta::class;
 
     /**
      * @var string $relation
      */
-    protected static $relation = 'post';
+    protected $relation = 'post';
 }

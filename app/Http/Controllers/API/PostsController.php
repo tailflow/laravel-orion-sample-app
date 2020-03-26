@@ -11,7 +11,7 @@ class PostsController extends APIController
     /**
      * @var string|null $model
      */
-    protected static $model = Post::class;
+    protected $model = Post::class;
 
     /**
      * @param Request $request

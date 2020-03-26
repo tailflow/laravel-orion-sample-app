@@ -11,10 +11,10 @@ class PostUserController extends RelationController
     /**
      * @var string|null $model
      */
-    protected static $model = Post::class;
+    protected $model = Post::class;
 
     /**
      * @var string $relation
      */
-    protected static $relation = 'user';
+    protected $relation = 'user';
 }

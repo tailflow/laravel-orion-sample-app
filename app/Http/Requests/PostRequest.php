@@ -16,7 +16,7 @@ class PostRequest extends Request
     public function storeRules()
     {
         return [
-            'status' => 'required|in:draft,review'
+            //'status' => 'required|in:draft,review'
         ];
     }
 }

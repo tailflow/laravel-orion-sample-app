@@ -11,6 +11,6 @@ class RolesController extends Controller
     /**
      * @var string|null $model
      */
-    protected static $model = Role::class;
+    protected $model = Role::class;
 
 }

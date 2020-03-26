@@ -13,12 +13,12 @@ class PostTagsController extends RelationController
     /**
      * @var string|null $model
      */
-    protected static $model = Post::class;
+    protected $model = Post::class;
 
     /**
      * @var string $relation
      */
-    protected static $relation = 'tags';
+    protected $relation = 'tags';
 
     /**
      * The list of pivot fields that can be set upon relation resource creation or update.
@@ -26,4 +26,9 @@ class PostTagsController extends RelationController
      * @var bool
      */
     protected $pivotFillable = ['meta'];
+
+    protected function filterableBy()
+    {
+        return ['name'];
+    }
 }

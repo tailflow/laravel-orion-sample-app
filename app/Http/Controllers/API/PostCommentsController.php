@@ -3,17 +3,30 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Post;
+use Orion\Concerns\DisableAuthorization;
 use Orion\Http\Controllers\RelationController;
 
 class PostCommentsController extends RelationController
 {
+    use DisableAuthorization;
+
     /**
      * @var string|null $model
      */
-    protected static $model = Post::class;
+    protected $model = Post::class;
 
     /**
      * @var string $relation
      */
-    protected static $relation = 'comments';
+    protected $relation = 'comments';
+
+    protected function sortableBy()
+    {
+        return ['body', 'commentable.title'];
+    }
+
+    protected function includes()
+    {
+        return ['commentable'];
+    }
 }

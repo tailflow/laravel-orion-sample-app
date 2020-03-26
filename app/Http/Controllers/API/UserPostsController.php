@@ -11,15 +11,15 @@ class UserPostsController extends RelationController
     /**
      * @var string|null $model
      */
-    protected static $model = User::class;
+    protected $model = User::class;
 
     /**
      * @var string $relation
      */
-    protected static $relation = 'posts';
+    protected $relation = 'posts';
 
     /**
      * @var string|null $relation
      */
-    protected static $associatingRelation = 'user';
+    protected $associatingRelation = 'user';
 }

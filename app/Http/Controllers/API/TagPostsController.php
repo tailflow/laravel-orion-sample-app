@@ -10,10 +10,10 @@ class TagPostsController extends APIController
     /**
      * @var string|null $model
      */
-    protected static $model = Tag::class;
+    protected $model = Tag::class;
 
     /**
      * @var string $relation
      */
-    protected static $relation = 'posts';
+    protected $relation = 'posts';
 }
