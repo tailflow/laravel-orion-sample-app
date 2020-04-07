@@ -17,9 +17,4 @@ class UserPostsController extends RelationController
      * @var string $relation
      */
     protected $relation = 'posts';
-
-    /**
-     * @var string|null $relation
-     */
-    protected $associatingRelation = 'user';
 }
