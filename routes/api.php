@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['as' => 'api.'], function() {
-    Orion::resource('posts', 'API\PostsController', ['softDeletes' => true]);
+    Orion::resource('posts', 'API\PostsController')->withSoftDeletes();
     Orion::belongsToResource('posts', 'user', 'API\PostUserController');
     Orion::hasOneResource('posts', 'meta', 'API\PostPostMetaController');
     Orion::morphOneResource('posts', 'image', 'API\PostImageController');
@@ -32,7 +32,7 @@ Route::group(['as' => 'api.'], function() {
 
     Orion::resource('roles', 'API\RolesController');
     Orion::belongsToManyResource('users', 'roles', 'API\UserRolesController');
-    Orion::hasManyResource('users', 'posts', 'API\UserPostsController', ['softDeletes' => true]);
+    Orion::hasManyResource('users', 'posts', 'API\UserPostsController'); //TODO: add registrar for relation resources
     Orion::hasManyThroughResource('teams', 'posts', 'API\TeamPostsController');
 });
 

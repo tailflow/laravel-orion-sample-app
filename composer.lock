@@ -770,7 +770,7 @@
             "dist": {
                 "type": "path",
                 "url": "./../package",
-                "reference": "b8689169ff202c0195abec1a16a90037e6756b32"
+                "reference": "65a96e9eb06f7c5e61aa4f4ee9198c95caf01c21"
             },
             "require": {
                 "ext-json": "*",
@@ -1183,16 +1183,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "1.5.3",
+            "version": "1.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "2574454b97e4103dc4e36917bd783b25624aefcd"
+                "reference": "21819c989e69bab07e933866ad30c7e3f32984ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/2574454b97e4103dc4e36917bd783b25624aefcd",
-                "reference": "2574454b97e4103dc4e36917bd783b25624aefcd",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/21819c989e69bab07e933866ad30c7e3f32984ba",
+                "reference": "21819c989e69bab07e933866ad30c7e3f32984ba",
                 "shasum": ""
             },
             "require": {
@@ -1274,7 +1274,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-19T22:47:30+00:00"
+            "time": "2020-08-18T01:19:12+00:00"
         },
         {
             "name": "league/event",
@@ -1328,16 +1328,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "6e96f54d82e71f71c4108da33ee96a7f57083710"
+                "reference": "63cd8c14708b9544d3f61d3c15b747fda1c95c6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/6e96f54d82e71f71c4108da33ee96a7f57083710",
-                "reference": "6e96f54d82e71f71c4108da33ee96a7f57083710",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/63cd8c14708b9544d3f61d3c15b747fda1c95c6e",
+                "reference": "63cd8c14708b9544d3f61d3c15b747fda1c95c6e",
                 "shasum": ""
             },
             "require": {
@@ -1415,7 +1415,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2020-08-12T14:23:41+00:00"
+            "time": "2020-08-18T10:57:55+00:00"
         },
         {
             "name": "league/mime-type-detection",
@@ -1727,16 +1727,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.8.0",
+            "version": "v4.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "8c58eb4cd4f3883f82611abeac2efbc3dbed787e"
+                "reference": "aaee038b912e567780949787d5fe1977be11a778"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/8c58eb4cd4f3883f82611abeac2efbc3dbed787e",
-                "reference": "8c58eb4cd4f3883f82611abeac2efbc3dbed787e",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/aaee038b912e567780949787d5fe1977be11a778",
+                "reference": "aaee038b912e567780949787d5fe1977be11a778",
                 "shasum": ""
             },
             "require": {
@@ -1744,7 +1744,7 @@
                 "php": ">=7.0"
             },
             "require-dev": {
-                "ircmaxell/php-yacc": "^0.0.6",
+                "ircmaxell/php-yacc": "^0.0.7",
                 "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0 || ^9.0"
             },
             "bin": [
@@ -1753,7 +1753,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.8-dev"
+                    "dev-master": "4.9-dev"
                 }
             },
             "autoload": {
@@ -1775,7 +1775,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2020-08-09T10:23:20+00:00"
+            "time": "2020-08-18T19:48:01+00:00"
         },
         {
             "name": "opis/closure",
@@ -5207,16 +5207,16 @@
         },
         {
             "name": "composer/xdebug-handler",
-            "version": "1.4.2",
+            "version": "1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/xdebug-handler.git",
-                "reference": "fa2aaf99e2087f013a14f7432c1cd2dd7d8f1f51"
+                "reference": "ebd27a9866ae8254e873866f795491f02418c5a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/fa2aaf99e2087f013a14f7432c1cd2dd7d8f1f51",
-                "reference": "fa2aaf99e2087f013a14f7432c1cd2dd7d8f1f51",
+                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/ebd27a9866ae8254e873866f795491f02418c5a5",
+                "reference": "ebd27a9866ae8254e873866f795491f02418c5a5",
                 "shasum": ""
             },
             "require": {
@@ -5261,7 +5261,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-04T11:16:35+00:00"
+            "time": "2020-08-19T10:27:58+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -6915,6 +6915,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {
