@@ -32,7 +32,7 @@ Route::group(['as' => 'api.'], function() {
 
     Orion::resource('roles', 'API\RolesController');
     Orion::belongsToManyResource('users', 'roles', 'API\UserRolesController');
-    Orion::hasManyResource('users', 'posts', 'API\UserPostsController'); //TODO: add registrar for relation resources
+    Orion::hasManyResource('users', 'posts', 'API\UserPostsController')->withSoftDeletes();
     Orion::hasManyThroughResource('teams', 'posts', 'API\TeamPostsController');
 });
 
