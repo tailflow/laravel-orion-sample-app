@@ -27,7 +27,7 @@ class PostTagsController extends RelationController
      */
     protected $pivotFillable = ['meta'];
 
-    protected function filterableBy()
+    protected function filterableBy() : array
     {
         return ['name'];
     }

@@ -20,12 +20,12 @@ class PostCommentsController extends RelationController
      */
     protected $relation = 'comments';
 
-    protected function sortableBy()
+    protected function sortableBy() : array
     {
         return ['body', 'commentable.title'];
     }
 
-    protected function includes()
+    protected function includes() : array
     {
         return ['commentable'];
     }

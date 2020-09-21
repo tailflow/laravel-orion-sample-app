@@ -23,17 +23,17 @@ class PostsController extends APIController
         $entity->user()->associate(User::query()->find(1));
     }
 
-    protected function sortableBy()
+    protected function sortableBy() : array
     {
         return ['title'];
     }
 
-    protected function filterableBy()
+    protected function filterableBy() : array
     {
         return ['title'];
     }
 
-    protected function searchableBy()
+    protected function searchableBy() : array
     {
         return ['title'];
     }
@@ -41,7 +41,7 @@ class PostsController extends APIController
     /**
      * @return array
      */
-    protected function includes()
+    protected function includes() : array
     {
         return ['user', 'image', 'comments', 'tags'];
     }
