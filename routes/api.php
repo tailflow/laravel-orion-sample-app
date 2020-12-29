@@ -19,7 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['as' => 'api.'], function() {
+Route::post('login', 'API\UserController@login');
+Route::post('register', 'API\UserController@register');
+
+Route::group(['as' => 'api.'], function () {
+    Route::put('user', 'API\UserController@update');
     Orion::resource('posts', 'API\PostsController')->withSoftDeletes();
     Orion::belongsToResource('posts', 'user', 'API\PostUserController');
     Orion::hasOneResource('posts', 'meta', 'API\PostPostMetaController');
@@ -35,4 +39,3 @@ Route::group(['as' => 'api.'], function() {
     Orion::hasManyResource('users', 'posts', 'API\UserPostsController')->withSoftDeletes();
     Orion::hasManyThroughResource('teams', 'posts', 'API\TeamPostsController');
 });
-
