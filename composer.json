@@ -14,7 +14,8 @@
         "tailflow/laravel-orion": "^1.1",
         "laravel/framework": "^6.0",
         "laravel/passport": "^7.4",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "lcobucci/jwt": "3.3.3"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
